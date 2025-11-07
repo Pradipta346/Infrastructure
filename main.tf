@@ -66,3 +66,13 @@ resource "aws_ec2_instance_state" "my_ec2" {
   instance_id = aws_instance.my-ec2.id
   state       = "stopped"
 }
+
+# s3-bucket
+resource "aws_s3_bucket" "my-s3" {
+  bucket = "my-golden-bucket-2"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
