@@ -1,4 +1,4 @@
-# Create VPC and Subnet
+/* # Create VPC and Subnet
 
 resource "aws_vpc" "my-vpc" {
   cidr_block = var.vpc_cidr
@@ -75,4 +75,28 @@ resource "aws_s3_bucket" "my-s3" {
     Name        = "My bucket"
     Environment = "Dev"
   }
+}*/ 
+
+# created IAM user
+resource "aws_iam_user" "s3_readonly_user" {
+  name = "s3-readonly-user-2"
+  path = "/"
+  tags = {
+    Purpose = "S3 ReadOnly Access"
+  }
 }
+
+# IAM policy attached
+resource "aws_iam_user_policy_attachment" "s3_readonly_policy" {
+  user       = aws_iam_user.s3_readonly_user.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
+
+
+# modules
+
+module "my_s3" {
+  source = "./modules/s3"
+}
+
+
