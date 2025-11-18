@@ -9,3 +9,13 @@ variable "public_subnet_cidr" {
   description = "CIDR block for the public subnet"
   type        = string
 }
+
+# for each meta arguments
+
+variable  "instance_type" {
+  default = {
+    "webserver-0" = "t2.micro"
+    "webserver-1" = "t2.small"
+    "webserver-2" = "t2.medium"
+  }
+}
