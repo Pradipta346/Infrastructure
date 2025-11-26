@@ -1,2 +1,3 @@
-echo date /t >> Job-B.bat
-echo time /t >> Job-B.bat
+echo echo Job executed > basic.bat
+echo date /t >> basic.bat
+echo time /t >> basic.bat
